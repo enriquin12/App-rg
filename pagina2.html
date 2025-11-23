@@ -1,182 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
-<title>Página 2 - Frente</title>
-<style>
-  :root { --vh: 100vh; }
-  html,body {
-    height:100%;
-    margin:0;
-    padding:0;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    -webkit-user-select:none;
-    user-select:none;
-    -webkit-tap-highlight-color: transparent;
-    background:#fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Página 2 - Frente</title>
 
-  /* fundo (imagem enviada por você) */
-  .bg {
-    position: fixed;
-    inset: 0;
-    background-image: url('pagina2.jpeg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    z-index: 0;
-    pointer-events: none; /* garante que cliques alcancem os hotspots */
-  }
+  <!-- PWA / iOS -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
 
-  /* camada para hotspots e elementos UI */
-  .ui {
-    position: relative;
-    z-index: 1;
-    min-height: calc(var(--vh));
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+  <style>
+    :root { --vh: 100vh; }
+    html,body {
+      height:100%;
+      margin:0;
+      padding:0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-user-select:none;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:#fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
 
-  /* botões invisíveis */
-  .hotspot {
-    position: absolute;
-    background: rgba(255,0,0,0); /* totalmente transparente */
-    border: none;
-    padding:0;
-    margin:0;
-    cursor:pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
+    /* fundo fixo */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('pagina2.jpeg');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  /* botão voltar: cobre a seta no canto superior esquerdo (valores calibrados) */
-  #btn-back {
-    top: 2.6%;
-    left: 3.6%;
-    width: 9.2%;
-    height: 6.8%;
-    min-width:44px;
-    min-height:44px;
-  }
+    /* camada UI acima do fundo */
+    .ui {
+      position: relative;
+      z-index: 1;
+      min-height: calc(var(--vh));
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
 
-  /* botão Verso: cobre a palavra "Verso" na aba superior (valores calibrados) */
-  #btn-verso {
-    top: 5.2%;
-    left: 50.5%;
-    width: 14.5%;
-    height: 6.2%;
-    transform: translateX(-8%);
-    min-width:44px;
-    min-height:44px;
-  }
+    .hotspot {
+      position: absolute;
+      background: rgba(255,0,0,0);
+      border: none;
+      padding:0;
+      margin:0;
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  /* -------------- AQUI ESTÁ A MUDANÇA PRINCIPAL --------------
-     A linha de última atualização foi transformada em fixed para
-     impedir qualquer movimento vertical. Ela tem espaçamento igual
-     das duas bordas (left e right iguais) e o conteúdo interno foi
-     deslocado levemente para a direita mantendo o mesmo padding
-     nas duas bordas.
-  ----------------------------------------------------------------*/
-  .last-row {
-    position: fixed; /* fixo na tela, não arrastável */
-    left: 6%;        /* espaçamento igual nas laterais */
-    right: 6%;
-    bottom: calc(env(safe-area-inset-bottom) + 12px); /* respeita área segura */
-    z-index: 2;
-    pointer-events: none; /* não captura cliques */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* alinhamento inicial do texto */
-    gap: 8px;
-    /* fonte e tamanho aproximados ao modelo */
-    font-size: 13px;
-    font-weight: 400;
-    color: #000;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    /* deslocamento visual interno para mover o texto um pouco à direita
-       sem alterar o espaçamento simétrico das bordas */
-    padding-left: 6px;
-  }
+    /* botão voltar (seta superior esquerda) */
+    #btn-back {
+      top: 2.6%;
+      left: 3.6%;
+      width: 9.2%;
+      height: 6.8%;
+      min-width:44px;
+      min-height:44px;
+    }
 
-  .last-row .auth {
-    font-weight: 600; /* negrito como no modelo */
-    font-size: 13px;
-    pointer-events: none;
-    font-family: inherit;
-  }
+    /* botão Verso (na aba superior) */
+    #btn-verso {
+      top: 5.2%;
+      left: 50.5%;
+      width: 14.5%;
+      height: 6.2%;
+      transform: translateX(-8%);
+      min-width:44px;
+      min-height:44px;
+    }
 
-  /* responsividade para telas pequenas */
-  @media (max-width:360px) {
-    #btn-back { top:3.2%; left:4.2%; width:11%; height:7.6%; }
-    #btn-verso { top:6.2%; left:51%; width:17%; height:7.6%; transform:translateX(-9%); }
-    .last-row { left: 5%; right: 5%; bottom: calc(env(safe-area-inset-bottom) + 10px); font-size:12px; padding-left: 4px; }
-  }
+    /* data/hora fixa, alinhamento simétrico e deslocada visualmente para a direita */
+    .last-row {
+      position: fixed;
+      left: 6%;
+      right: 6%;
+      bottom: calc(env(safe-area-inset-bottom) + 12px);
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #000;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding-left: 6px; /* desloca visualmente para a direita mantendo espaçamento simétrico */
+    }
 
-  @media (min-width:900px) {
-    #btn-back, #btn-verso { min-width:56px; min-height:56px; }
-  }
-</style>
+    .last-row .auth {
+      font-weight: 600;
+      font-size: 13px;
+      pointer-events: none;
+      font-family: inherit;
+    }
+
+    @media (max-width:360px) {
+      #btn-back { top:3.2%; left:4.2%; width:11%; height:7.6%; }
+      #btn-verso { top:6.2%; left:51%; width:17%; height:7.6%; transform:translateX(-9%); }
+      .last-row { left:5%; right:5%; bottom: calc(env(safe-area-inset-bottom) + 10px); font-size:12px; padding-left:4px; }
+    }
+
+    @media (min-width:900px) {
+      #btn-back, #btn-verso { min-width:56px; min-height:56px; }
+    }
+  </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
 
   <div class="ui" role="main" aria-label="Página frente do documento">
-    <!-- botão invisível voltar (seta superior esquerda) -->
-    <button id="btn-back" class="hotspot" aria-label="Voltar" onclick="location.href='index.html'"></button>
+    <!-- hotspot voltar -->
+    <button id="btn-back" class="hotspot" aria-label="Voltar"></button>
 
-    <!-- botão invisível Verso -->
-    <button id="btn-verso" class="hotspot" aria-label="Abrir verso" onclick="location.href='pagina3.html'"></button>
+    <!-- hotspot Verso -->
+    <button id="btn-verso" class="hotspot" aria-label="Abrir verso"></button>
 
-    <!-- Texto de última atualização + autenticador (fixo e não arrastável) -->
+    <!-- data/hora fixa -->
     <div class="last-row" aria-hidden="false">
       <span>Última atualização em:</span>
       <span id="auth-timestamp" class="auth">carregando...</span>
     </div>
   </div>
 
-<script>
-  // corrige 100vh em iOS
-  function setVh(){
-    document.documentElement.style.setProperty('--vh', (window.innerHeight || document.documentElement.clientHeight) + 'px');
-  }
-  setVh();
-  window.addEventListener('resize', setVh);
+  <script>
+    // Corrige 100vh em iOS
+    function setVh(){
+      document.documentElement.style.setProperty('--vh', (window.innerHeight || document.documentElement.clientHeight) + 'px');
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
 
-  // formata com dois dígitos
-  function two(n){ return n < 10 ? '0' + n : String(n); }
+    // formata com dois dígitos
+    function two(n){ return n < 10 ? '0' + n : String(n); }
 
-  // constrói timestamp no formato dd/mm/aa - hh:mm
-  function buildTimestamp(date){
-    const d = two(date.getDate());
-    const m = two(date.getMonth() + 1);
-    const y = String(date.getFullYear()).slice(-2);
-    const hh = two(date.getHours());
-    const mm = two(date.getMinutes());
-    return `${d}/${m}/${y} - ${hh}:${mm}`;
-  }
+    // constrói timestamp no formato dd/mm/aa - hh:mm
+    function buildTimestamp(date){
+      const d = two(date.getDate());
+      const m = two(date.getMonth() + 1);
+      const y = String(date.getFullYear()).slice(-2);
+      const hh = two(date.getHours());
+      const mm = two(date.getMinutes());
+      return `${d}/${m}/${y} - ${hh}:${mm}`;
+    }
 
-  // escreve timestamp sincronizado com o relógio do celular
-  function setAuthTimestamp(){
-    const el = document.getElementById('auth-timestamp');
-    if(!el) return;
-    const now = new Date();
-    el.textContent = buildTimestamp(now);
-  }
+    // escreve timestamp sincronizado com o relógio do celular
+    function setAuthTimestamp(){
+      const el = document.getElementById('auth-timestamp');
+      if(!el) return;
+      const now = new Date();
+      el.textContent = buildTimestamp(now);
+    }
 
-  // inicializa ao carregar a página
-  window.addEventListener('load', function(){
-    setAuthTimestamp();
-    // se quiser atualização contínua (a cada minuto), descomente:
-    // window.setInterval(setAuthTimestamp, 60000);
-  });
-</script>
+    // navegação dos hotspots
+    (function(){
+      // botão voltar -> index.html
+      const btnBack = document.getElementById('btn-back');
+      if(btnBack){
+        btnBack.addEventListener('click', function(e){
+          e.preventDefault();
+          try { window.location.href = 'index.html'; } catch(err) { window.open('index.html','_self'); }
+        }, {passive:false});
+      }
+
+      // botão verso -> pagina3.html
+      const btnVerso = document.getElementById('btn-verso');
+      if(btnVerso){
+        btnVerso.addEventListener('click', function(e){
+          e.preventDefault();
+          try { window.location.href = 'pagina3.html'; } catch(err) { window.open('pagina3.html','_self'); }
+        }, {passive:false});
+      }
+    })();
+
+    // inicializa timestamp ao carregar
+    window.addEventListener('load', function(){
+      setAuthTimestamp();
+      // opcional: atualizar a cada minuto
+      // window.setInterval(setAuthTimestamp, 60000);
+    });
+
+    // registro simples de service worker (opcional) — comente se não usar sw.js
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(err => {
+        // falha no registro não é crítica
+        console.warn('SW register failed', err);
+      });
+    }
+  </script>
 </body>
 </html>
-
