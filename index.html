@@ -18,7 +18,7 @@
     background: #000;
   }
 
-  /* Container principal usa a imagem que você enviou */
+  /* container com imagem de fundo (já contém visual da barra inferior) */
   .container {
     min-height: calc(var(--vh));
     width: 100%;
@@ -26,7 +26,7 @@
     box-sizing: border-box;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0px);
     background-image: url('pagina1.jpeg');
     background-repeat: no-repeat;
     background-position: center top;
@@ -36,7 +36,7 @@
   /* hotspots invisíveis */
   .hotspot {
     position: absolute;
-    background: rgba(255,0,0,0);
+    background: rgba(255,0,0,0); /* totalmente transparente */
     border: none;
     padding: 0;
     margin: 0;
@@ -55,7 +55,6 @@
     min-height: 44px;
   }
 
-  /* alternativa para telas muito pequenas */
   @media (max-width: 360px) {
     #btn-page2 {
       top: 27.2%;
@@ -63,26 +62,6 @@
       width: 89.2%;
       height: 17.6%;
     }
-  }
-
-  /* barra inferior visual */
-  .bottom-nav {
-    position: absolute;
-    bottom: calc(env(safe-area-inset-bottom) + 8px);
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    pointer-events: none;
-  }
-  .nav-btn {
-    pointer-events: auto;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
-    padding: 8px 12px;
-    color: #000;
-    border: none;
-    font-size: 13px;
   }
 
   @media (min-width: 900px) {
@@ -94,13 +73,6 @@
   <div class="container" role="main" aria-label="Página inicial da carteira">
     <!-- botão invisível que abre pagina2.html -->
     <button id="btn-page2" class="hotspot" aria-label="Abrir cartão RG" onclick="location.href='pagina2.html'"></button>
-
-    <!-- barra de navegação inferior (visual) -->
-    <div class="bottom-nav" aria-hidden="false">
-      <button class="nav-btn" onclick="location.href='index.html'">Carteira</button>
-      <button class="nav-btn" onclick="location.href='pagina2.html'">Serviços</button>
-      <button class="nav-btn" onclick="location.href='pagina3.html'">Opções</button>
-    </div>
   </div>
 
 <script>
