@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,32 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Página 1</title>
 <style>
-html, body {
-  margin:0; padding:0;
-  height:100%;
-  overflow:hidden;
-}
-.container {
-  background: url('pagina1.jpeg') no-repeat top center;
-  background-size: cover;
-  width:100%;
-  height:100%;
-  position:relative;
-}
-#btn-page2 {
-  position:absolute;
-  top: 180px;
-  left: 20px;
-  width: 90%;
-  height: 120px;
-  background: rgba(255,0,0,0); 
-  border:none;
-}
-</style>
-</head>
-<body>
-<div class="container">
-  <button id="btn-page2" onclick="alert('Ir para página 2')"></button>
-</div>
-</body>
-</html>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .container {
+    background: url('pagina1.jpeg') no-repeat center top;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  /* hotspot invisível que cobre o retângulo branco do RG */
+  .hotspot {
+    position: absolute;
+    background: rgba(255,0,0,0); /* transparente */
+    border: none;
+    padding: 0;
+    margin: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* valores estimados: ajuste conforme necessário para alinhar exatamente */
+  #btn-page2 {
+    top: 30%;
+    left: 6%;
+    width: 88%;
+    height: 22%;
+  }
+
+  /* barra de navegação inferior (consistência visual) */
+  .bottom-nav {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around
