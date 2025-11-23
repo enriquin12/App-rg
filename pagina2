@@ -2,140 +2,167 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
 <title>Página 2 - Frente</title>
 <style>
   :root { --vh: 100vh; }
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  html,body {
+    height:100%;
+    margin:0;
+    padding:0;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-user-select:none;
+    user-select:none;
     -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    user-select: none;
-    touch-action: manipulation;
-    background: #fff;
+    background:#fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
-  /* container usa --vh para evitar problemas do 100vh em iOS */
-  .container {
+  /* fundo (imagem enviada por você) */
+  .bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('pagina2.jpeg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  /* camada para hotspots e texto */
+  .ui {
+    position: relative;
+    z-index: 1;
     min-height: calc(var(--vh));
     width: 100%;
-    position: relative;
-    background: url('pagina2.jpeg') no-repeat center top;
-    background-size: cover;
     box-sizing: border-box;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* hotspots invisíveis */
+  /* botões invisíveis */
   .hotspot {
     position: absolute;
     background: rgba(255,0,0,0); /* totalmente transparente */
     border: none;
-    padding: 0;
-    margin: 0;
+    padding:0;
+    margin:0;
+    cursor:pointer;
     -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
   }
 
-  /* botão voltar: cobre a seta no canto superior esquerdo */
+  /* botão voltar: cobre a seta no canto superior esquerdo (valores calibrados) */
   #btn-back {
     top: 2.6%;
-    left: 3.8%;
+    left: 3.6%;
     width: 9.2%;
     height: 6.8%;
-    min-width: 44px;
-    min-height: 44px;
+    min-width:44px;
+    min-height:44px;
   }
 
-  /* botão "Verso": cobre a palavra Verso na aba superior */
+  /* botão Verso: cobre a palavra "Verso" na aba superior (valores calibrados) */
   #btn-verso {
     top: 5.2%;
     left: 50.5%;
     width: 14.5%;
     height: 6.2%;
-    transform: translateX(-8%); /* pequeno ajuste para centralizar sobre o texto */
-    min-width: 44px;
-    min-height: 44px;
+    transform: translateX(-8%);
+    min-width:44px;
+    min-height:44px;
   }
 
-  /* última atualização + autenticador */
+  /* área do rodapé com "Última atualização em:" e o autenticador */
   .last-row {
     position: absolute;
     left: 6%;
     bottom: 12.2%;
     color: #000;
+    /* fonte e tamanho aproximados ao modelo */
     font-size: 13px;
-    background: transparent;
-    pointer-events: none;
+    font-weight: 400;
     line-height: 1;
+    pointer-events: none;
+    z-index:2;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
+
   .auth {
-    display: inline-block;
-    margin-left: 8px;
-    font-weight: 600;
+    display:inline-block;
+    margin-left:8px;
+    font-weight:600; /* negrito como no modelo */
+    font-size:13px;
     pointer-events: none;
+    font-family: inherit;
   }
 
-  /* barra de navegação inferior (visual) */
-  .bottom-nav {
-    position: absolute;
-    bottom: calc(env(safe-area-inset-bottom) + 8px);
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    pointer-events: none;
-  }
-  .nav-btn {
-    pointer-events: auto;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
-    padding: 8px 12px;
-    color: #000;
-    border: none;
-    font-size: 13px;
+  /* responsividade para telas pequenas */
+  @media (max-width:360px) {
+    #btn-back { top:3.2%; left:4.2%; width:11%; height:7.6%; }
+    #btn-verso { top:6.2%; left:51%; width:17%; height:7.6%; transform:translateX(-9%); }
+    .last-row { left:5%; bottom:10.6%; font-size:12px; }
   }
 
-  /* responsividade: pequenas telas */
-  @media (max-width: 360px) {
-    #btn-back { top: 3.2%; left: 4.2%; width: 11%; height: 7.6%; }
-    #btn-verso { top: 6.2%; left: 51%; width: 17%; height: 7.6%; transform: translateX(-9%); }
-    .last-row { left: 5%; bottom: 10.6%; font-size: 12px; }
-  }
-
-  @media (min-width: 900px) {
-    /* telas maiores: aumenta áreas mínimas para facilitar clique */
-    #btn-back { min-width: 56px; min-height: 56px; }
-    #btn-verso { min-width: 56px; min-height: 56px; }
+  @media (min-width:900px) {
+    #btn-back, #btn-verso { min-width:56px; min-height:56px; }
   }
 </style>
 </head>
 <body>
-  <div class="container" role="main" aria-label="Página frente do documento">
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="ui" role="main" aria-label="Página frente do documento">
     <!-- botão invisível voltar (seta superior esquerda) -->
     <button id="btn-back" class="hotspot" aria-label="Voltar" onclick="location.href='index.html'"></button>
 
     <!-- botão invisível Verso -->
     <button id="btn-verso" class="hotspot" aria-label="Abrir verso" onclick="location.href='pagina3.html'"></button>
 
-    <!-- Texto de última atualização + autenticador -->
+    <!-- Texto de última atualização + autenticador (estático visual, autenticado por JS) -->
     <div class="last-row" aria-hidden="false">
       <span>Última atualização em:</span>
       <span id="auth-timestamp" class="auth">carregando...</span>
     </div>
-
-    <!-- barra de navegação inferior (opcional visual) -->
-    <div class="bottom-nav" aria-hidden="false">
-      <button class="nav-btn" onclick="location.href='index.html'">Carteira</button>
-      <button class="nav-btn" onclick="location.href='pagina2.html'">Serviços</button>
-      <button class="nav-btn" onclick="location.href='pagina3.html'">Opções</button>
-    </div>
   </div>
 
 <script>
-  /* corrige problema do 100vh em iOS defin
+  // corrige 100vh em iOS
+  function setVh(){
+    document.documentElement.style.setProperty('--vh', (window.innerHeight || document.documentElement.clientHeight) + 'px');
+  }
+  setVh();
+  window.addEventListener('resize', setVh);
+
+  // formata com dois dígitos
+  function two(n){ return n < 10 ? '0' + n : String(n); }
+
+  // constrói timestamp no formato dd/mm/aa - hh:mm
+  function buildTimestamp(date){
+    const d = two(date.getDate());
+    const m = two(date.getMonth() + 1);
+    const y = String(date.getFullYear()).slice(-2);
+    const hh = two(date.getHours());
+    const mm = two(date.getMinutes());
+    return `${d}/${m}/${y} - ${hh}:${mm}`;
+  }
+
+  // escreve timestamp sincronizado com o relógio do celular
+  function setAuthTimestamp(){
+    const el = document.getElementById('auth-timestamp');
+    if(!el) return;
+    const now = new Date();
+    el.textContent = buildTimestamp(now);
+  }
+
+  // inicializa ao carregar a página
+  window.addEventListener('load', function(){
+    setAuthTimestamp();
+    // se quiser atualização contínua, descomente a linha abaixo
+    // window.setInterval(setAuthTimestamp, 60000);
+  });
+</script>
+</body>
+</html>
