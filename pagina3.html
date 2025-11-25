@@ -56,7 +56,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* botão voltar (seta superior esquerda) */
     #btn-back {
       top: 2.6%;
       left: 3.6%;
@@ -66,10 +65,10 @@
       min-height:44px;
     }
 
-    /* botão Frente (reposicionado acima da palavra 'Frente') */
+    /* botão Frente posicionado sobre a palavra 'FRENTE' */
     #btn-frente {
       top: 5.2%;
-      left: 30.5%;
+      left: 18.5%;
       width: 14.5%;
       height: 6.2%;
       transform: translateX(-8%);
@@ -103,7 +102,7 @@
 
     @media (max-width:360px) {
       #btn-back { top: 3.2%; left: 4.2%; width: 11%; height: 7.6%; }
-      #btn-frente { top: 6.2%; left: 31%; width: 17%; height: 7.6%; transform: translateX(-9%); }
+      #btn-frente { top: 6.2%; left: 19%; width: 17%; height: 7.6%; transform: translateX(-9%); }
       .auth-container { left: 5%; right: 5%; bottom: calc(env(safe-area-inset-bottom) + 56px); font-size: 12px; padding: 7px 10px; }
     }
 
@@ -117,11 +116,9 @@
   <div class="bg" aria-hidden="true"></div>
 
   <div class="ui" role="main" aria-label="Página verso do documento">
-    <!-- hotspots -->
     <button id="btn-back" class="hotspot" aria-label="Voltar"></button>
     <button id="btn-frente" class="hotspot" aria-label="Abrir frente"></button>
 
-    <!-- autenticador centralizado -->
     <div class="auth-container" role="status" aria-live="polite" aria-atomic="true">
       <span>Última atualização em:</span>
       <span id="auth-timestamp" class="auth">carregando...</span>
@@ -161,7 +158,7 @@
       if(frente){
         frente.addEventListener('click', function(e){
           e.preventDefault();
-          location.assign('pagina2.html'); // ← retorna à página 2
+          location.assign('pagina2.html'); // ← retorna corretamente
         }, {passive:false});
       }
     })();
