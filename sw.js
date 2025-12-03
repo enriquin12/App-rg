@@ -1,4 +1,4 @@
-const CACHE_NAME = 'minha-carteira-v3';
+const CACHE_NAME = 'minha-carteira-v4';
 const URLS_TO_CACHE = [
   '/RGdigitalSP/',          // página inicial (ajuste conforme seu repositório)
   '/RGdigitalSP/index.html',
