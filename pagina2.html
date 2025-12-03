@@ -32,15 +32,28 @@
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
+
   <div class="ui">
     <button id="btn-back" class="hotspot" aria-label="Voltar"></button>
     <button id="btn-verso" class="hotspot" aria-label="Abrir verso"></button>
+
     <div class="auth-container" role="status" aria-live="polite" aria-atomic="true">
       <span>Última atualização em:</span>
       <span id="auth-timestamp" class="auth">carregando...</span>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    // BOTÃO VOLTAR → página1.html
+    document.getElementById("btn-back").addEventListener("click", () => {
+      window.location.href = "pagina1.html";
+    });
+
+    // BOTÃO VERSO → página3.html
+    document.getElementById("btn-verso").addEventListener("click", () => {
+      window.location.href = "pagina3.html";
+    });
+  </script>
+
 </body>
 </html>
-
