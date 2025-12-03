@@ -1,15 +1,15 @@
 const CACHE_NAME = 'minha-carteira-v4';
 const URLS_TO_CACHE = [
-  '/RGdigitalSP/',          // página inicial (ajuste conforme seu repositório)
-  '/RGdigitalSP/index.html',
-  '/RGdigitalSP/pagina2.html',
-  '/RGdigitalSP/pagina3.html',
-  '/RGdigitalSP/manifest.json',
-  '/RGdigitalSP/icons/icon-192.png',
-  '/RGdigitalSP/icons/icon-512.png',
-  '/RGdigitalSP/pagina1.jpeg',
-  '/RGdigitalSP/pagina2.jpeg',
-  '/RGdigitalSP/pagina3.jpeg'
+  '/App-rg/',          // página inicial (ajuste conforme seu repositório)
+  '/App-rg/index.html',
+  '/App-rg/pagina2.html',
+  '/App-rg/pagina3.html',
+  '/App-rg/manifest.json',
+  '/App-rg/icons/icon-192.png',
+  '/App-rg/icons/icon-512.png',
+  '/App-rg/pagina1.jpeg',
+  '/App-rg/pagina2.jpeg',
+  '/App-rg/pagina3.jpeg'
 ];
 
 // Instala e guarda arquivos no cache
