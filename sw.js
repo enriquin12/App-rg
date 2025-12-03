@@ -9,7 +9,7 @@ const URLS_TO_CACHE = [
   '/RGdigitalSP/icons/icon-512.png',
   '/RGdigitalSP/pagina1.jpeg',
   '/RGdigitalSP/pagina2.jpeg',
-  '/RGdigitalSP/pagina33.jpeg'
+  '/RGdigitalSP/pagina3.jpeg'
 ];
 
 // Instala e guarda arquivos no cache
