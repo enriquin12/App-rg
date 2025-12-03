@@ -1,4 +1,4 @@
-const CACHE_NAME = 'minha-carteira-v4';
+const CACHE_NAME = 'minha-carteira-v5';
 const URLS_TO_CACHE = [
   '/App-rg/',          // página inicial (ajuste conforme seu repositório)
   '/App-rg/index.html',
