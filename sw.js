@@ -1,4 +1,4 @@
-const CACHE_NAME = 'minha-carteira-v1';
+const CACHE_NAME = 'minha-carteira-v3';
 const URLS_TO_CACHE = [
   '/RGdigitalSP/',          // página inicial (ajuste conforme seu repositório)
   '/RGdigitalSP/index.html',
@@ -9,7 +9,7 @@ const URLS_TO_CACHE = [
   '/RGdigitalSP/icons/icon-512.png',
   '/RGdigitalSP/pagina1.jpeg',
   '/RGdigitalSP/pagina2.jpeg',
-  '/RGdigitalSP/pagina3.jpeg'
+  '/RGdigitalSP/pagina33.jpeg'
 ];
 
 // Instala e guarda arquivos no cache
